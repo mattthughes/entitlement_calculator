@@ -1,4 +1,5 @@
 import { useState } from "react";
+import EntitlementForm from "./EntitlementForm";
 
 export default function HolidayEntitlementPage() {
     return <>
@@ -20,6 +21,9 @@ export default function HolidayEntitlementPage() {
                     Click Calculate, and your remaining holiday entitlement will be displayed.
                 </li>
             </ol>
+        </div>
+        <div>
+            <EntitlementForm/>
         </div>
 
     </>
