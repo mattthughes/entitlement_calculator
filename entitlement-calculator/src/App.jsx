@@ -1,12 +1,11 @@
 import './App.css'
+import HolidayEntitlementPage from './components/HolidayEntitlementPage'
 
 function App() {
 
   return (
     <>
-      <div>
-        <h1>Entitlement calculator</h1>
-      </div>
+        <HolidayEntitlementPage/>
     </>
   )
 }
