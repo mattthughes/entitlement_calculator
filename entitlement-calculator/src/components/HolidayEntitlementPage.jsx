@@ -1,14 +1,22 @@
 import { useState } from "react";
 import EntitlementForm from "./EntitlementForm";
+import '../styles/home.css'
+
 
 export default function HolidayEntitlementPage() {
     return <>
-        <div>
-            <h1>Welcome to the holiday entitlement tracker.</h1>
-            <p>This tool helps you calculate how much annual leave you have remaining, so you can plan your time off with confidence and make the most of your entitlement.</p>
-            <h2>Instructions</h2>
-            <ol>
-                <li>
+    <div className="d-flex justify-content-center align-items-center min-vh-100">
+        <div className="d-flex flex-column border border-black p-4 rounded col-12 col-md-8 col-lg-6 mx-auto">
+            <h1 className="heading">Holiday entitlement calculator</h1>
+            <div className=''>
+                <div>
+                    <p className="intro pb-2">This tool helps you calculate how much annual leave you have remaining, so you can plan your time off with confidence and make the most of your entitlement.</p>
+                </div> 
+            </div>
+            <h2 className="heading p-1">Instructions:</h2>
+            <div className="text-center intro">
+                <ol>
+                <li className="">
                     Select whether you would like to calculate your entitlement in days or hours.
                 </li>
                 <li>
@@ -18,13 +26,20 @@ export default function HolidayEntitlementPage() {
                     Enter how many days you work each week.
                 </li>
                 <li>
-                    Click Calculate, and your remaining holiday entitlement will be displayed.
+                    Click calculate, and your remaining holiday entitlement will be displayed.
                 </li>
             </ol>
-        </div>
+            </div>
+            
+        
         <div>
             <EntitlementForm/>
         </div>
+
+    </div>
+
+    </div>
+        
 
     </>
 }
