@@ -2,24 +2,24 @@ import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import { useState } from 'react';
 import Alert from "react-bootstrap/Alert";
+import { daysToHours } from '../utils/Entitlement';
 export default function EntitlementForm() {
 
     const [errors, setErrors] = useState({});
     const [remainingDays, setRemainingDays] = useState("");
     const [weeklyHours, setWeeklyHours] = useState("");
     const [daysPerWeek, setDaysPerWeek] = useState("");
-    const [unit, setUnit] = useState('');
     const [result, setResult] = useState(null);
 
     const handleSubmit =(e) => {
         e.preventDefault();
+        
     
     // Empty error found object to store the errors
     const errorsFound = {}
 
     // Setting the error fields to make sure the user can not submit the form without the fields being filled out
     if (!remainingDays) errorsFound.remainingDays = ["Please fill out the following field"]
-    if (!unit) errorsFound.unit = ["Please pick either hours or days"]
     if (!weeklyHours) errorsFound.weeklyHours = ["Please fill out your weekly hours"]
     if (!daysPerWeek) errorsFound.daysPerWeek = ["Please fill out your days per week"]
 
@@ -32,18 +32,15 @@ export default function EntitlementForm() {
 
     setErrors({})
 
-    // Creating the days, hours and day per week variables
-    const days = Number(remainingDays);
-    const hours = Number(weeklyHours);
-    const day_per_week = Number(daysPerWeek);
+    const days = Number(remainingDays)
+  const hours = Number(weeklyHours)
+  const day_per_week = Number(daysPerWeek)
 
-    const hoursPerDay = day_per_week > 0 ? hours / day_per_week : 0
-    const remainingHours = days * hoursPerDay
+    const holidayBreakdown = daysToHours(days,hours,day_per_week)
 
     // Set the result so the user can visually see either days or hours remaining depending on what they have chosen
     setResult({
-        daysRemaining: days,
-        hoursRemaining: remainingHours
+        holidayBreakdown,
     })
     
     }
@@ -52,39 +49,11 @@ export default function EntitlementForm() {
             <Form.Group>
                 {/* Days remaining form field, setting max and min values so the form cannot be submitted without meeting the min or max values */}
                 <Form.Label>How many days do you have remaining
-                    <Form.Control type='number' max="40" min="1" value={remainingDays} name='remaining-days' onChange={(e) => setRemainingDays(e.target.value)}></Form.Control>
+                    <Form.Control type='number' value={remainingDays} name='remaining-days' onChange={(e) => setRemainingDays(e.target.value)}></Form.Control>
                 </Form.Label>
             </Form.Group>
             {/* Mapping over the errors object and triggering an alert if the field is empty */}
             {errors?.remainingDays?.map((message, idx) => (
-                <Alert variant='warning' key={idx}>
-                    {message}
-                </Alert>
-                
-            ))}
-            <Form.Group className="mb-3">
-                 {/* Radio buttons field which allows the user to pick either hours or days to calculate*/}
-                <Form.Label>Do you want to calculate hours or days</Form.Label>
-                <div>
-                    <Form.Label>Hours</Form.Label>
-                    <Form.Check type="radio"
-                    name='unit'
-                    value='hours'
-                    checked={unit === 'hours'}
-                    onChange={(e) => setUnit(e.target.value)}
-                    />
-                    <Form.Label>Days</Form.Label>
-                    <Form.Check type="radio" 
-                    name='unit'
-                    value="days"
-                    checked={unit === 'days'}
-                    onChange={(e) => setUnit(e.target.value)}
-                    />
-                </div>
-
-            </Form.Group>
-             {/* Mapping over the errors object and triggering an alert if the field is empty */}
-            {errors?.unit?.map((message, idx) => (
                 <Alert variant='warning' key={idx}>
                     {message}
                 </Alert>
@@ -131,15 +100,22 @@ export default function EntitlementForm() {
 
 
             <Button variant="primary" type="submit">
-                Submit
+                Calculate
             </Button>
 
-            {result && (
-        <div style={{ marginTop: 16 }}>
-          {unit === 'days' && <p><strong>{result.daysRemaining}</strong> days remaining</p>}
-          {unit === 'hours' && <p><strong>{result.hoursRemaining.toFixed(2)}</strong> hours remaining</p>}
-        </div>
-      )}
+            {result?.holidayBreakdown && (
+  <div style={{ marginTop: 16 }}>
+    <p>
+      <strong>{result.holidayBreakdown.totalDays}</strong> days remaining
+    </p>
+
+    <p>
+      That’s <strong>{result.holidayBreakdown.holidayBreakdown.days}</strong> days
+      {' '}and <strong>{result.holidayBreakdown.holidayBreakdown.hours}</strong> hours
+      {' '}and <strong>{result.holidayBreakdown.holidayBreakdown.minutes}</strong> minutes
+    </p>
+  </div>
+)}
         </Form>
     </>
 }
