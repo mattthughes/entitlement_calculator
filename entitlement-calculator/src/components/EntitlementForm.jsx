@@ -102,27 +102,39 @@ export default function EntitlementForm() {
             </Button>
 
             {result?.holidayBreakdown && (
-                <div style={{ marginTop: 16 }}>
-                    <p> You have
-                        <strong> {result.totalDays}</strong> days remaining
-                    </p>
+  <div style={{ marginTop: 16 }}>
+    <p hidden> 
+      <strong>{result.holidayBreakdown.totalDays}</strong> 
+      {result.holidayBreakdown.totalDays === 1 ? ' day ' : ' days '}
+    </p>
 
-                    <p>
-                        {result.holidayBreakdown.days > 0 && (
-                            <strong>{result.holidayBreakdown.days}</strong>
-                        )}{result.holidayBreakdown.days > 0 && ' days '}
+    <p>
+      {result.holidayBreakdown.days > 0 && (
+        <strong>{result.holidayBreakdown.days}</strong>
+      )}
+      {result.holidayBreakdown.days > 0 && (
+        result.holidayBreakdown.days === 1 ? ' day ' : ' days '
+      )}
+      
+      {result.holidayBreakdown.hours > 0 && (
+        <strong>{result.holidayBreakdown.hours}</strong>
+      )}
+      {result.holidayBreakdown.hours > 0 && (
+        result.holidayBreakdown.hours === 1 ? ' hour ' : ' hours '
+      )}
+      
+      {result.holidayBreakdown.minutes > 0 && (
+        <strong>{result.holidayBreakdown.minutes}</strong>
+      )}
+      {result.holidayBreakdown.minutes > 0 && (
+        result.holidayBreakdown.minutes === 1 ? ' minute ' : ' minutes '
+      )}
 
-                        {result.holidayBreakdown.hours > 0 && (
-                            <strong>{result.holidayBreakdown.hours}</strong>
-                        )}{result.holidayBreakdown.hours > 0 && ' hours '}
+       remaining
+    </p>
+  </div>
+)}
 
-                        {(result.holidayBreakdown.minutes > 0 ||
-                            (result.holidayBreakdown.days === 0 && result.holidayBreakdown.hours === 0)) && (
-                                <><strong>{result.holidayBreakdown.minutes}</strong> minutes remaining</>
-                            )}
-                    </p>
-                </div>
-            )}
         </Form>
     </>
 }
