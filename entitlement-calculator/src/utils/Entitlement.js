@@ -10,7 +10,6 @@ export function daysToHours(remainingDays, weeklyHours, daysPerWeek) {
     }
 
     const hoursPerDay = hours/day_per_week
-    const totalHours = days * hoursPerDay
 
     const wholeDays = Math.floor(days)
     const fractionalDays = days- wholeDays
@@ -22,23 +21,17 @@ export function daysToHours(remainingDays, weeklyHours, daysPerWeek) {
 
 
     // checks to see if minutes is equal to 60 to add an hour and revert minutes back to 0
-    if (minutes === 60) {
+    if (minutes >= 60) {
         wholeHours +=1
         minutes = 0
     }
     
     
+    
     // return the result totals
     return {
-        totalDays: days,
-        totalHours,
-        minutes,
-
-        holidayBreakdown: {
-            days: wholeDays,
-            hours: wholeHours,
-            minutes,
-        }
-
-    }
+    totalDays: days,
+    totalHours: days * hoursPerDay,
+    holidayBreakdown: { days: wholeDays, hours: wholeHours, minutes }
+}
 }

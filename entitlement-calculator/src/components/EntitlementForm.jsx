@@ -11,45 +11,43 @@ export default function EntitlementForm() {
     const [daysPerWeek, setDaysPerWeek] = useState("");
     const [result, setResult] = useState(null);
 
-    const handleSubmit =(e) => {
+    const handleSubmit = (e) => {
         e.preventDefault();
-        
-    
-    // Empty error found object to store the errors
-    const errorsFound = {}
 
-    // Setting the error fields to make sure the user can not submit the form without the fields being filled out
-    if (!remainingDays) errorsFound.remainingDays = ["Please fill out the following field"]
-    if (!weeklyHours) errorsFound.weeklyHours = ["Please fill out your weekly hours"]
-    if (!daysPerWeek) errorsFound.daysPerWeek = ["Please fill out your days per week"]
 
-    // Returning an array with the errors found, if there are no errors remaining set the errors to the empty object
-    if (Object.keys(errorsFound).length) {
-        setErrors(errorsFound)
-        setResult(null)
-        return
-    }
+        // Empty error found object to store the errors
+        const errorsFound = {}
 
-    setErrors({})
+        // Setting the error fields to make sure the user can not submit the form without the fields being filled out
+        if (!remainingDays) errorsFound.remainingDays = ["Please fill out the following field"]
+        if (!weeklyHours) errorsFound.weeklyHours = ["Please fill out your weekly hours"]
+        if (!daysPerWeek) errorsFound.daysPerWeek = ["Please fill out your days per week"]
 
-    const days = Number(remainingDays)
-  const hours = Number(weeklyHours)
-  const day_per_week = Number(daysPerWeek)
+        // Returning an array with the errors found, if there are no errors remaining set the errors to the empty object
+        if (Object.keys(errorsFound).length) {
+            setErrors(errorsFound)
+            setResult(null)
+            return
+        }
 
-    const holidayBreakdown = daysToHours(days,hours,day_per_week)
+        setErrors({})
 
-    // Set the result so the user can visually see either days or hours remaining depending on what they have chosen
-    setResult({
-        holidayBreakdown,
-    })
-    
+        const days = Number(remainingDays)
+        const hours = Number(weeklyHours)
+        const day_per_week = Number(daysPerWeek)
+
+        // Set the result so the user can visually see either days or hours remaining depending on what they have chosen
+        const calculation = daysToHours(days, hours, day_per_week)
+        setResult(calculation)
+
+        console.log(result);
     }
     return <>
         <Form onSubmit={handleSubmit}>
             <Form.Group>
                 {/* Days remaining form field, setting max and min values so the form cannot be submitted without meeting the min or max values */}
                 <Form.Label>How many days do you have remaining
-                    <Form.Control type='number' value={remainingDays} name='remaining-days' onChange={(e) => setRemainingDays(e.target.value)}></Form.Control>
+                    <Form.Control type='number' max="40" value={remainingDays} name='remaining-days' onChange={(e) => setRemainingDays(e.target.value)}></Form.Control>
                 </Form.Label>
             </Form.Group>
             {/* Mapping over the errors object and triggering an alert if the field is empty */}
@@ -57,13 +55,13 @@ export default function EntitlementForm() {
                 <Alert variant='warning' key={idx}>
                     {message}
                 </Alert>
-                
+
             ))}
             <div>
                 <Form.Group className="mb-3">
                     <Form.Label>What are your contracted hours per week?
                     </Form.Label>
-                     {/* Select drop down, that will allow the user to pick there contract*/}
+                    {/* Select drop down, that will allow the user to pick there contract*/}
                     <Form.Select name='weekly-hours' value={weeklyHours} onChange={(e) => setWeeklyHours(e.target.value)}>
                         <option>Please select your contracted hours</option>
                         <option value="37.5">37.5hrs</option>
@@ -72,13 +70,13 @@ export default function EntitlementForm() {
                         <option value="30">30hrs</option>
                     </Form.Select>
                 </Form.Group>
-                 {/* Mapping over the errors object and triggering an alert if the field is empty */}
+                {/* Mapping over the errors object and triggering an alert if the field is empty */}
                 {errors?.weeklyHours?.map((message, idx) => (
-                <Alert variant='warning' key={idx}>
-                    {message}
-                </Alert>
-                
-            ))}
+                    <Alert variant='warning' key={idx}>
+                        {message}
+                    </Alert>
+
+                ))}
             </div>
 
             <Form.Group className="mb-3">
@@ -89,14 +87,14 @@ export default function EntitlementForm() {
                 </div>
 
             </Form.Group>
-             {/* Mapping over the errors object and triggering an alert if the field is empty */}
+            {/* Mapping over the errors object and triggering an alert if the field is empty */}
             {errors?.daysPerWeek?.map((message, idx) => (
                 <Alert variant='warning' key={idx}>
                     {message}
                 </Alert>
-                
+
             ))}
-            
+
 
 
             <Button variant="primary" type="submit">
@@ -104,18 +102,27 @@ export default function EntitlementForm() {
             </Button>
 
             {result?.holidayBreakdown && (
-  <div style={{ marginTop: 16 }}>
-    <p>
-      <strong>{result.holidayBreakdown.totalDays}</strong> days remaining
-    </p>
+                <div style={{ marginTop: 16 }}>
+                    <p> You have
+                        <strong> {result.totalDays}</strong> days remaining
+                    </p>
 
-    <p>
-      That’s <strong>{result.holidayBreakdown.holidayBreakdown.days}</strong> days
-      {' '}and <strong>{result.holidayBreakdown.holidayBreakdown.hours}</strong> hours
-      {' '}and <strong>{result.holidayBreakdown.holidayBreakdown.minutes}</strong> minutes
-    </p>
-  </div>
-)}
+                    <p>
+                        {result.holidayBreakdown.days > 0 && (
+                            <strong>{result.holidayBreakdown.days}</strong>
+                        )}{result.holidayBreakdown.days > 0 && ' days '}
+
+                        {result.holidayBreakdown.hours > 0 && (
+                            <strong>{result.holidayBreakdown.hours}</strong>
+                        )}{result.holidayBreakdown.hours > 0 && ' hours '}
+
+                        {(result.holidayBreakdown.minutes > 0 ||
+                            (result.holidayBreakdown.days === 0 && result.holidayBreakdown.hours === 0)) && (
+                                <><strong>{result.holidayBreakdown.minutes}</strong> minutes remaining</>
+                            )}
+                    </p>
+                </div>
+            )}
         </Form>
     </>
 }
