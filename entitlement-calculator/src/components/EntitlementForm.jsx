@@ -3,6 +3,7 @@ import Form from 'react-bootstrap/Form';
 import { useState } from 'react';
 import Alert from "react-bootstrap/Alert";
 import { daysToHours } from '../utils/Entitlement';
+import '../styles/entitlement.css'
 export default function EntitlementForm() {
 
     const [errors, setErrors] = useState({});
@@ -97,12 +98,13 @@ export default function EntitlementForm() {
 
 
 
-            <Button variant="primary" type="submit">
+            <Button className='p-2' variant="primary" type="submit">
                 Calculate
             </Button>
 
             {result?.holidayBreakdown && (
-                <div style={{ marginTop: 16 }}>
+                <div className='border border-black rounded p-2 m-3 allowance-text' style={{ marginTop: 16 }}>
+                    <p>You have</p>
                     <p hidden>
                         <strong>{result.holidayBreakdown.totalDays}</strong>
                         {result.holidayBreakdown.totalDays === 1 ? ' day ' : ' days '}
