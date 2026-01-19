@@ -15,7 +15,6 @@ export default function EntitlementForm() {
     const handleSubmit = (e) => {
         e.preventDefault();
 
-
         // Empty error found object to store the errors
         const errorsFound = {}
 
@@ -24,6 +23,12 @@ export default function EntitlementForm() {
         if (!weeklyHours) errorsFound.weeklyHours = ["Please fill out your weekly hours"]
         if (!daysPerWeek) errorsFound.daysPerWeek = ["Please fill out your days per week"]
 
+        const days = Number(remainingDays)
+
+        if (days <= 0) {
+            errorsFound.remainingDays = ["Please enter a number larger than 0"]
+        }
+
         // Returning an array with the errors found, if there are no errors remaining set the errors to the empty object
         if (Object.keys(errorsFound).length) {
             setErrors(errorsFound)
@@ -31,11 +36,16 @@ export default function EntitlementForm() {
             return
         }
 
+
+
         setErrors({})
 
-        const days = Number(remainingDays)
+
+
+
         const hours = Number(weeklyHours)
         const day_per_week = Number(daysPerWeek)
+
 
         // Set the result so the user can visually see either days or hours remaining depending on what they have chosen
         const calculation = daysToHours(days, hours, day_per_week)
@@ -64,7 +74,7 @@ export default function EntitlementForm() {
                     </Form.Label>
                     {/* Select drop down, that will allow the user to pick there contract*/}
                     <Form.Select name='weekly-hours' value={weeklyHours} onChange={(e) => setWeeklyHours(e.target.value)}>
-                        <option>Please select your contracted hours</option>
+                        <option>Select your contracted hours</option>
                         <option value="37.5">37.5hrs</option>
                         <option value="40">40hrs</option>
                         <option value="22.5">22.5hrs</option>

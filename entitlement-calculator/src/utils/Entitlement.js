@@ -5,7 +5,7 @@ export function daysToHours(remainingDays, weeklyHours, daysPerWeek) {
     const day_per_week = Number(daysPerWeek);
 
     // stops the function if any input isn't a real number
-    if (!Number.isFinite(days) || !Number.isFinite(hours) || !Number.isFinite(day_per_week) || day_per_week <=0 ) {
+    if (!Number.isFinite(hours) || !Number.isFinite(day_per_week) || day_per_week <=0 ) {
         return null
     }
 
