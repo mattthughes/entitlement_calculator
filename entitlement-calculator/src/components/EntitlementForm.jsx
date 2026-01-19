@@ -45,7 +45,7 @@ export default function EntitlementForm() {
     }
     return <>
         <Form onSubmit={handleSubmit}>
-            <Form.Group>
+            <Form.Group className="mb-3 mx-auto" style={{ maxWidth: 400 }}>
                 {/* Days remaining form field, setting max and min values so the form cannot be submitted without meeting the min or max values */}
                 <Form.Label>How many days do you have remaining
                     <Form.Control type='number' max="40" value={remainingDays} name='remaining-days' onChange={(e) => setRemainingDays(e.target.value)}></Form.Control>
@@ -59,7 +59,7 @@ export default function EntitlementForm() {
 
             ))}
             <div>
-                <Form.Group className="mb-3">
+                <Form.Group className="mb-3 mx-auto mb-3" style={{ maxWidth: 275 }}>
                     <Form.Label>What are your contracted hours per week?
                     </Form.Label>
                     {/* Select drop down, that will allow the user to pick there contract*/}
@@ -80,7 +80,7 @@ export default function EntitlementForm() {
                 ))}
             </div>
 
-            <Form.Group className="mb-3">
+            <Form.Group className="mb-3 mx-auto" style={{ maxWidth: 275 }} >
                 <Form.Label>How many days do you work per week?</Form.Label>
                 <div>
                     {/* Days per week form field, setting max and min values so the form cannot be submitted without meeting the min or max values */}
