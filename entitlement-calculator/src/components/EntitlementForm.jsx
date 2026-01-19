@@ -104,46 +104,13 @@ export default function EntitlementForm() {
                         <option value="16.5">16hrs 24 mins</option>
                         <option value="16">16hrs</option>
                         <option value="15.5">15.5hrs</option>
+                        <option value="15">15hrs</option>
                         <option value="14.5">14.5hrs</option>
                         <option value="13.5">13.5hrs</option>
                         <option value="13">13hrs</option>
                         <option value="10.5">10.5hrs</option>
                         <option value="8">8hrs</option>
                         <option value="7.5">7.5hrs</option>
-                        
-                        
-                        
-                        
-                         
-                        
-                        
-                        
-                        
-                        
-                        
-                        
-                        
-                        
-                        
-                        
-                        
-                        
-                        
-                        
-                        
-                        
-                        
-                        
-                        
-                        
-                        
-                        <option value="15">15hrs</option>
-                        <option value="16">16hrs</option>
-                        
-                        
-                        
-
-
                     </Form.Select>
                 </Form.Group>
                 {/* Mapping over the errors object and triggering an alert if the field is empty */}
