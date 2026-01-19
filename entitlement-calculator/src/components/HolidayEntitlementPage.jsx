@@ -17,7 +17,7 @@ export default function HolidayEntitlementPage() {
             <div className="text-center intro">
                 <ol>
                 <li className="">
-                    Select whether you would like to calculate your entitlement in days or hours.
+                   Tell us how many days you have remaining.
                 </li>
                 <li>
                     Choose your contract length — for example 37.5 hours, 40 hours, 22.5 hours, or another option from the dropdown.
@@ -26,7 +26,10 @@ export default function HolidayEntitlementPage() {
                     Enter how many days you work each week.
                 </li>
                 <li>
-                    Click calculate, and your remaining holiday entitlement will be displayed.
+                    Click calculate, and your remaining holiday entitlement will be displayed we will do the rest for you.
+                </li>
+ <li>
+                  We can also break your entitlement down further. For example, if you have 0.01 days remaining, this will be converted into minutes only. This gives you confidence in your remaining entitlement and helps you make the most of it when booking any remaining holiday.
                 </li>
             </ol>
             </div>
