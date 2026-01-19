@@ -75,10 +75,75 @@ export default function EntitlementForm() {
                     {/* Select drop down, that will allow the user to pick there contract*/}
                     <Form.Select name='weekly-hours' value={weeklyHours} onChange={(e) => setWeeklyHours(e.target.value)}>
                         <option>Select your contracted hours</option>
-                        <option value="37.5">37.5hrs</option>
                         <option value="40">40hrs</option>
-                        <option value="22.5">22.5hrs</option>
+                        <option value="37.5">37.5hrs</option>
+                        <option value="37">37hrs</option>
+                        <option value="36.5">36.5hrs</option>
+                        <option value="33.75">33.75hrs</option>
+                        <option value="33">33hrs</option>
+                        <option value="32.5">32.5hrs</option>
+                        <option value="32">32hrs</option>
+                        <option value="31.25">31.25hrs</option>
                         <option value="30">30hrs</option>
+                        <option value="29.5">29.5hrs</option>
+                        <option value="29">29hrs</option>
+                        <option value="28">28hrs</option>
+                        <option value="27.5">27.5hrs</option>
+                        <option value="27">27hrs</option>
+                        <option value="26.5">26.5hrs</option>
+                        <option value="26">26hrs</option>
+                        <option value="25.83">25.83hrs</option>
+                        <option value="25">25hrs</option>
+                        <option value="24.75">24.75hrs</option>
+                        <option value="23.5">23.5hrs</option>
+                        <option value="23">23hrs</option>
+                        <option value="22.5">22.5hrs</option>
+                        <option value="21">21hrs</option>
+                        <option value="20">20hrs</option>
+                        <option value="17.5">17.5hrs</option>
+                        <option value="16.5">16hrs 24 mins</option>
+                        <option value="16">16hrs</option>
+                        <option value="15.5">15.5hrs</option>
+                        <option value="14.5">14.5hrs</option>
+                        <option value="13.5">13.5hrs</option>
+                        <option value="13">13hrs</option>
+                        <option value="10.5">10.5hrs</option>
+                        <option value="8">8hrs</option>
+                        <option value="7.5">7.5hrs</option>
+                        
+                        
+                        
+                        
+                         
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        <option value="15">15hrs</option>
+                        <option value="16">16hrs</option>
+                        
+                        
+                        
+
+
                     </Form.Select>
                 </Form.Group>
                 {/* Mapping over the errors object and triggering an alert if the field is empty */}
