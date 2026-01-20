@@ -57,7 +57,14 @@ export default function EntitlementForm() {
         <Form onSubmit={handleSubmit}>
             <Form.Group className="mb-3 mx-auto" style={{ maxWidth: 400 }}>
                 {/* Days remaining form field, setting max and min values so the form cannot be submitted without meeting the min or max values */}
-                <Form.Label><strong>What is your remaining entitlement in days?</strong>
+                <Form.Label>
+                    <strong>
+                        <span>
+                            What is your remaining entitlement <br/> in days?
+                        </span>
+                        
+
+                    </strong>
                     <Form.Control type='number' max="40" value={remainingDays} name='remaining-days' onChange={(e) => setRemainingDays(e.target.value)}></Form.Control>
                 </Form.Label>
             </Form.Group>
