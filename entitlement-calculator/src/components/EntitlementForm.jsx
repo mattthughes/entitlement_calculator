@@ -11,8 +11,10 @@ export default function EntitlementForm() {
     const [weeklyHours, setWeeklyHours] = useState("");
     const [daysPerWeek, setDaysPerWeek] = useState("");
     const [result, setResult] = useState(null);
-    const total = remainingDays * weeklyHours / daysPerWeek
+    const totalHours = remainingDays * weeklyHours / daysPerWeek
+    const totalDays = remainingDays / daysPerWeek
     const [calcInputs, setCalcInputs] = useState(null);
+    const [showCalc, setShowCalc] = useState(false)
 
 
     const handleSubmit = (e) => {
@@ -54,7 +56,8 @@ export default function EntitlementForm() {
             remainingDays,
             weeklyHours,
             daysPerWeek,
-            total: (days * hours) / day_per_week,
+            totalHours: (days * hours) / day_per_week,
+            totalDays: totalHours / (weeklyHours / day_per_week)
         });
 
 
@@ -158,52 +161,79 @@ export default function EntitlementForm() {
             </Button>
 
             {result?.holidayBreakdown && (
-                <div className='border border-black rounded p-2 m-3 allowance-text' style={{ marginTop: 16 }}>
-                    <p>You have</p>
-                    <p hidden>
-                        <strong>{result.holidayBreakdown.totalDays}</strong>
-                        {result.holidayBreakdown.totalDays === 1 ? ' day ' : ' days '}
-                    </p>
-
-                    <p>
-                        {result.holidayBreakdown.days > 0 && (
-                            <strong>{result.holidayBreakdown.days}</strong>
-                        )}
-                        {result.holidayBreakdown.days > 0 && (
-                            result.holidayBreakdown.days === 1 ? ' day ' : ' days '
-                        )}
-
-                        {result.holidayBreakdown.hours > 0 && (
-                            <strong>{result.holidayBreakdown.hours}</strong>
-                        )}
-                        {result.holidayBreakdown.hours > 0 && (
-                            result.holidayBreakdown.hours === 1 ? ' hour ' : ' hours '
-                        )}
-
-                        {result.holidayBreakdown.minutes > 0 && (
-                            <strong>{result.holidayBreakdown.minutes}</strong>
-                        )}
-                        {result.holidayBreakdown.minutes > 0 && (
-                            result.holidayBreakdown.minutes === 1 ? ' minute ' : ' minutes '
-                        )}
-
-                        remaining
-                    </p>
+                <>
                     <div>
-                        <p>Calculation breakdown:</p>
-                        <div className='border border-black d-flex justify-content-evenly'>
-                            <span>{calcInputs.remainingDays}</span>
-                            <span> * </span>
-                            <span>{calcInputs.weeklyHours}</span>
-                            <span> / </span>
-                            <span>{calcInputs.daysPerWeek}</span>
-                            <span> = </span>
-                            <span>{calcInputs.total}</span>
-                        </div>
+
                     </div>
-                </div>
+                    <div className='border border-black rounded p-2 m-3 allowance-text' style={{ marginTop: 16 }}>
+                        <p>You have</p>
+                        <p hidden>
+                            <strong>{result.holidayBreakdown.totalDays}</strong>
+                            {result.holidayBreakdown.totalDays === 1 ? ' day ' : ' days '}
+                        </p>
+
+                        <p>
+                            {result.holidayBreakdown.days > 0 && (
+                                <strong>{result.holidayBreakdown.days}</strong>
+                            )}
+                            {result.holidayBreakdown.days > 0 && (
+                                result.holidayBreakdown.days === 1 ? ' day ' : ' days '
+                            )}
+
+                            {result.holidayBreakdown.hours > 0 && (
+                                <strong>{result.holidayBreakdown.hours}</strong>
+                            )}
+                            {result.holidayBreakdown.hours > 0 && (
+                                result.holidayBreakdown.hours === 1 ? ' hour ' : ' hours '
+                            )}
+
+                            {result.holidayBreakdown.minutes > 0 && (
+                                <strong>{result.holidayBreakdown.minutes}</strong>
+                            )}
+                            {result.holidayBreakdown.minutes > 0 && (
+                                result.holidayBreakdown.minutes === 1 ? ' minute ' : ' minutes '
+                            )}
+
+                            remaining
+                        </p>
+                        
+
+                    </div>
+                    <Button className='p-2' variant="primary" onClick={() => setShowCalc(!showCalc)}>
+                            Show calculation
+                        </Button>
+                </>
 
             )}
+
+            {showCalc ? <>
+                <div className='p-2'>
+                    <p>Calculation breakdown (Hours) :</p>
+
+                    <div className='border border-black d-flex justify-content-evenly'>
+                        <span>{calcInputs.remainingDays}</span>
+                        <span> * </span>
+                        <span>{calcInputs.weeklyHours}</span>
+                        <span> / </span>
+                        <span>{calcInputs.daysPerWeek}</span>
+                        <span> = </span>
+                        <span>{calcInputs.totalHours}</span>
+                    </div>
+                </div>
+                <div>
+                    <p>Calculation breakdown (Days) :</p>
+                    <div className='border border-black pt-2 mt-2 d-flex justify-content-evenly'>
+                        
+                        <span>{calcInputs.totalHours}</span>
+                        <span> / </span>
+                        <span>{calcInputs.weeklyHours}</span>
+                        <span> / </span>
+                        <span> {calcInputs.daysPerWeek} </span>
+                        <span> = </span>
+                        <span>{calcInputs.totalDays}</span>
+                    </div>
+                </div>
+            </> : null}
 
         </Form>
     </>
