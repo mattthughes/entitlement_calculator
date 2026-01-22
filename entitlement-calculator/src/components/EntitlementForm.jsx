@@ -11,6 +11,9 @@ export default function EntitlementForm() {
     const [weeklyHours, setWeeklyHours] = useState("");
     const [daysPerWeek, setDaysPerWeek] = useState("");
     const [result, setResult] = useState(null);
+    const total = remainingDays * weeklyHours / daysPerWeek
+    const [calcInputs, setCalcInputs] = useState(null);
+
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -36,23 +39,27 @@ export default function EntitlementForm() {
             return
         }
 
-
-
         setErrors({})
-
-
-
 
         const hours = Number(weeklyHours)
         const day_per_week = Number(daysPerWeek)
-
 
         // Set the result so the user can visually see either days or hours remaining depending on what they have chosen
         const calculation = daysToHours(days, hours, day_per_week)
         setResult(calculation)
 
         console.log(result);
+
+        setCalcInputs({
+            remainingDays,
+            weeklyHours,
+            daysPerWeek,
+            total: (days * hours) / day_per_week,
+        });
+
+
     }
+
     return <>
         <Form onSubmit={handleSubmit}>
             <Form.Group className="mb-3 mx-auto" style={{ maxWidth: 400 }}>
@@ -60,12 +67,12 @@ export default function EntitlementForm() {
                 <Form.Label>
                     <strong>
                         <span>
-                            What is your remaining entitlement <br/> in days?
+                            What is your remaining entitlement <br /> in days?
                         </span>
-                        
+
 
                     </strong>
-                    <Form.Control type='number' max="40" value={remainingDays} name='remaining-days' onChange={(e) => setRemainingDays(e.target.value)}></Form.Control>
+                    <Form.Control type='number' max="40" step="0.01" value={remainingDays} name='remaining-days' onChange={(e) => setRemainingDays(e.target.value)}></Form.Control>
                 </Form.Label>
             </Form.Group>
             {/* Mapping over the errors object and triggering an alert if the field is empty */}
@@ -146,7 +153,6 @@ export default function EntitlementForm() {
             ))}
 
 
-
             <Button className='p-2' variant="primary" type="submit">
                 Calculate
             </Button>
@@ -183,7 +189,20 @@ export default function EntitlementForm() {
 
                         remaining
                     </p>
+                    <div>
+                        <p>Calculation breakdown:</p>
+                        <div className='border border-black d-flex justify-content-evenly'>
+                            <span>{calcInputs.remainingDays}</span>
+                            <span> * </span>
+                            <span>{calcInputs.weeklyHours}</span>
+                            <span> / </span>
+                            <span>{calcInputs.daysPerWeek}</span>
+                            <span> = </span>
+                            <span>{calcInputs.total}</span>
+                        </div>
+                    </div>
                 </div>
+
             )}
 
         </Form>
