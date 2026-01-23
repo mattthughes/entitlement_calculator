@@ -175,7 +175,7 @@ export default function EntitlementForm() {
                         </p>
                         
                         <p>
-                            <i class="fa-solid fa-clock"></i>
+                            <i class="fa-solid fa-clock m-1"></i>
                             {result.holidayBreakdown.days > 0 && (
                                 <strong>{result.holidayBreakdown.days}</strong>
                             )}
