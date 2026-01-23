@@ -5,6 +5,7 @@ import Alert from "react-bootstrap/Alert";
 import { daysToHours } from '../utils/Entitlement';
 import '../styles/entitlement.css'
 import CalculationModal from './CalculationModal';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 export default function EntitlementForm() {
 
     const [errors, setErrors] = useState({});
@@ -172,8 +173,9 @@ export default function EntitlementForm() {
                             <strong>{result.holidayBreakdown.totalDays}</strong>
                             {result.holidayBreakdown.totalDays === 1 ? ' day ' : ' days '}
                         </p>
-
+                        
                         <p>
+                            <i class="fa-solid fa-clock"></i>
                             {result.holidayBreakdown.days > 0 && (
                                 <strong>{result.holidayBreakdown.days}</strong>
                             )}
@@ -225,9 +227,6 @@ export default function EntitlementForm() {
                 </>
 
             )}
-
-
-
         </Form>
     </>
 }
