@@ -12,7 +12,7 @@ export default function CalculationModal({ show, onHide, calcInputs }) {
       <Modal.Body>
         <div className="mb-3">
           <p className="mb-1">Hours</p>
-          <div className="border border-black d-flex justify-content-evenly p-2">
+          <div className="border border-black rounded d-flex justify-content-evenly p-2">
             <span>{calcInputs.remainingDays}</span>
             <span>*</span>
             <span>{calcInputs.weeklyHours}</span>
@@ -25,7 +25,7 @@ export default function CalculationModal({ show, onHide, calcInputs }) {
 
         <div>
           <p className="mb-1">Days</p>
-          <div className="border border-black d-flex justify-content-evenly p-2">
+          <div className="border border-black rounded d-flex justify-content-evenly p-2">
             <span>{calcInputs.totalHours}</span>
             <span>/</span>
             <span>{calcInputs.weeklyHours}</span>
