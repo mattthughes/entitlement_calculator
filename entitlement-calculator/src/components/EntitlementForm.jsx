@@ -166,7 +166,7 @@ export default function EntitlementForm() {
                     <div>
 
                     </div>
-                    <div className='border border-black rounded p-2 m-3 allowance-text' style={{ marginTop: 16 }}>
+                    <div className='border border-success shadow-md rounded p-2 m-3 allowance-text' style={{ marginTop: 16 }}>
                         <p>You have</p>
                         <p hidden>
                             <strong>{result.holidayBreakdown.totalDays}</strong>
@@ -226,7 +226,7 @@ export default function EntitlementForm() {
 
             )}
 
-            
+
 
         </Form>
     </>

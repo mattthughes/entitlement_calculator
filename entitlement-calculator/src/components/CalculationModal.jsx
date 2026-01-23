@@ -1,4 +1,4 @@
-import Modal from 'react-bootstrap/Modal';
+import Modal from 'react-bootstrap/Modal'
 
 export default function CalculationModal({ show, onHide, calcInputs }) {
   if (!calcInputs) return null;
