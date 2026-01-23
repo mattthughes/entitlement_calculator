@@ -4,6 +4,7 @@ import { useState } from 'react';
 import Alert from "react-bootstrap/Alert";
 import { daysToHours } from '../utils/Entitlement';
 import '../styles/entitlement.css'
+import CalculationModal from './CalculationModal';
 export default function EntitlementForm() {
 
     const [errors, setErrors] = useState({});
@@ -196,44 +197,36 @@ export default function EntitlementForm() {
 
                             remaining
                         </p>
-                        
+
 
                     </div>
-                    <Button className='p-2' variant="primary" onClick={() => setShowCalc(!showCalc)}>
-                            Show calculation
-                        </Button>
+                    <Button
+                        className="p-2 d-none d-lg-inline-block"
+                        variant="outline-primary"
+                        onClick={() => setShowCalc(true)}
+                    >
+                        Show calculation
+                    </Button>
+
+                    {/* Mobile: toggle inline breakdown */}
+                    <Button
+                        className="p-2 d-lg-none"
+                        variant="primary"
+                        onClick={() => setShowCalc(!showCalc)}
+                    >
+                        Show calculation
+                    </Button>
+
+                    <CalculationModal
+                        show={showCalc}
+                        onHide={() => setShowCalc(false)}
+                        calcInputs={calcInputs}
+                    />
                 </>
 
             )}
 
-            {showCalc ? <>
-                <div className='p-2'>
-                    <p>Calculation breakdown (Hours) :</p>
-
-                    <div className='border border-black d-flex justify-content-evenly'>
-                        <span>{calcInputs.remainingDays}</span>
-                        <span> * </span>
-                        <span>{calcInputs.weeklyHours}</span>
-                        <span> / </span>
-                        <span>{calcInputs.daysPerWeek}</span>
-                        <span> = </span>
-                        <span>{calcInputs.totalHours}</span>
-                    </div>
-                </div>
-                <div>
-                    <p>Calculation breakdown (Days) :</p>
-                    <div className='border border-black pt-2 mt-2 d-flex justify-content-evenly'>
-                        
-                        <span>{calcInputs.totalHours}</span>
-                        <span> / </span>
-                        <span>{calcInputs.weeklyHours}</span>
-                        <span> / </span>
-                        <span> {calcInputs.daysPerWeek} </span>
-                        <span> = </span>
-                        <span>{calcInputs.totalDays}</span>
-                    </div>
-                </div>
-            </> : null}
+            
 
         </Form>
     </>

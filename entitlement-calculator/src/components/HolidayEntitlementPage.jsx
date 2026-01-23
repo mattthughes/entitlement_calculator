@@ -5,7 +5,7 @@ import '../styles/home.css'
 export default function HolidayEntitlementPage() {
     return <>
         <div className="d-flex justify-content-center align-items-center min-vh-100 home">
-            <div className="d-flex flex-column border border-black p-4 rounded col-12 col-md-8 mx-auto card">
+            <div className="d-flex flex-column border border-black p-4 rounded col-12 col-md-12 mx-auto card">
                 <h1 className="heading">Holiday entitlement calculator</h1>
                 <div className=''>
                     <div>
@@ -13,26 +13,15 @@ export default function HolidayEntitlementPage() {
                     </div>
                 </div>
                 <div className="text-center intro">
-                    
-                       
-                       <p>
+                    <p>
                         Please complete the following questions and then click <strong>calculate</strong>.
-                       </p>
-                            
-                       
-                   
+                    </p>
                 </div>
-
-
                 <div>
                     <EntitlementForm />
                 </div>
-
             </div>
-
         </div>
-
-
     </>
 }
 
