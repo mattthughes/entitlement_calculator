@@ -29,7 +29,7 @@ export default function CalculationModal({ show, onHide, calcInputs }) {
             <span>{calcInputs.totalHours}</span>
             <span>/</span>
             <span>{calcInputs.weeklyHours}</span>
-            <span>/</span>
+            <span>*</span>
             <span>{calcInputs.daysPerWeek}</span>
             <span>=</span>
             <strong>{calcInputs.totalDays}</strong>
