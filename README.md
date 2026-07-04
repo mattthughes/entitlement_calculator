@@ -10,7 +10,7 @@ A React application that calculates an employee's remaining holiday entitlement 
 
 <p align="center">
 <img
-src="docs/images/holiday-app-preview.png"
+src="entitlement-calculator/docs/images/holiday-app-preview.png"
 alt="Holiday Entitlement Calculator preview"
 width="800"
 />
