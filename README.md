@@ -1,58 +1,41 @@
-# Entitlement_calculator
-An entitlement calculator to calculate remaining holiday
+# Holiday Entitlement Calculator
 
-[To view the deployed project cick here](https://entitlement-calculator.vercel.app/)
+A React application that calculates an employee's remaining holiday entitlement based on their contracted hours and working pattern.
 
+## Live Site
 
-## Site goals
+[View the live application](https://entitlement-calculator.vercel.app/)
 
-This site allows users to calculate there remaining entitlement.
+## Preview
 
-## Features list
-
-* Intro page - Users can read the introduction and instantly know what this tool is here for, with a nice warm message to welcome new users
-* Instructions - Clear instructions how to use the tool, which will help new users very quickly. 
-* Form - This form has 3 input fields where the user can type there remaining entitlement , select there contract and type how many days they work per week, which will personalise this tool to them.
-* Allowance message - This message is broken down into days hours and minutes, if there is only 40 minutes left the days and hours fields will be hidden allowing the user to clearly understand what they have left.
-
-### Key features
-
-#### Intro feature
-
-![Intro Mobile](/entitlement-calculator/docs/wireframes/intro-mobile.png)
-
-![Intro Desktop](/entitlement-calculator/docs/wireframes/intro-desktop.png)
+<p align="center">
+<img
+src="docs/images/holiday-app-preview.png"
+alt="Holiday Entitlement Calculator preview"
+width="800"
+/>
+</p>
 
 
-#### Instructions feature
+## About
 
-![Instructions Mobile](/entitlement-calculator/docs/wireframes/instructions-mobile.png)
+This project was built to solve a real problem by calculating employees' remaining holiday entitlement. While building it, I improved my understanding of business logic by creating calculations that reflect different working patterns and contracted hours.
 
-![Instructions Desktop](/entitlement-calculator/docs/wireframes/instructions-desktop.png)
+I also gained experience with form validation, state management and handling user input to make sure the calculations were accurate.
 
-#### Form features
+## Features
 
-![Form Mobile](/entitlement-calculator/docs/wireframes/form-mobile.png)
-
-![Form Desktop](/entitlement-calculator/docs/wireframes/form-desktop.png)
-
-
-#### Allowance message feature
-
-![Allowance Mobile](/entitlement-calculator/docs/wireframes/allowance-message-mobile.png)
-
-![Allowance Desktop](/entitlement-calculator/docs/wireframes/allowance-message-desktop.png)
-
-
-### Body
-
-I went for the Oswald font for heading and Open sans for all other text
+- Calculate remaining holiday entitlement
+- Supports different contracted hours
+- Supports different working patterns
+- Form validation to prevent invalid input
+- Responsive design
 
 
 ### Frameworks & Tools
 
-- [react](https://react.dev/)
-- [react-bootstap](https://react-bootstrap.netlify.app/)
+- [React](https://react.dev/)
+- [React-Bootstrap](https://react-bootstrap.netlify.app/)
 - [Git](https://git-scm.com/)
 - [Github](https://github.com/)
 
