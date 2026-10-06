@@ -35,3 +35,31 @@ export function daysToHours(remainingDays, weeklyHours, daysPerWeek) {
     holidayBreakdown: { days: wholeDays, hours: wholeHours, minutes }
 }
 }
+
+export function hoursToDays(remainingHours, weeklyHours, daysPerWeek) {
+    const hours = Number(remainingHours);
+    const weekly = Number(weeklyHours);
+    const day_per_week = Number(daysPerWeek);
+
+    // stops the function if any input isn't a real number
+    if (!Number.isFinite(hours) || !Number.isFinite(weekly) || !Number.isFinite(day_per_week) || day_per_week <= 0 || weekly <= 0) {
+        return null
+    }
+
+    const hoursPerDay = weekly / day_per_week
+
+    // work in whole minutes so rounding can't leave you with 60 minutes
+    const totalMinutes = Math.round(hours * 60)
+    const minutesPerDay = Math.round(hoursPerDay * 60)
+
+    const wholeDays = Math.floor(totalMinutes / minutesPerDay)
+    const leftoverMinutes = totalMinutes - wholeDays * minutesPerDay
+    const wholeHours = Math.floor(leftoverMinutes / 60)
+    const minutes = leftoverMinutes % 60
+
+    return {
+        totalHours: hours,
+        totalDays: hours / hoursPerDay,
+        holidayBreakdown: { days: wholeDays, hours: wholeHours, minutes }
+    }
+}

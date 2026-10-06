@@ -2,7 +2,7 @@ import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import { useState } from 'react';
 import Alert from "react-bootstrap/Alert";
-import { daysToHours } from '../utils/Entitlement';
+import { daysToHours, hoursToDays } from '../utils/Entitlement';
 import '../styles/entitlement.css'
 import CalculationModal from './CalculationModal';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
